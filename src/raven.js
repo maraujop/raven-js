@@ -1113,7 +1113,7 @@ Raven.prototype = {
             };
 
             each(['debug', 'info', 'warn', 'error', 'log'], function (_, level) {
-                wrapConsoleMethod(console, level, consoleMethodCallback);
+                wrapConsoleMethod(console, level, consoleMethodCallback, __DEV__);
             });
         }
 

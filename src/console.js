@@ -1,6 +1,6 @@
 'use strict';
 
-var wrapMethod = function(console, level, callback) {
+var wrapMethod = function(console, level, callback, shouldLogOriginal) {
     var originalConsoleLevel = console[level];
     var originalConsole = console;
 
@@ -20,7 +20,7 @@ var wrapMethod = function(console, level, callback) {
         callback && callback(msg, data);
 
         // this fails for some browsers. :(
-        if (originalConsoleLevel) {
+        if (originalConsoleLevel && shouldLogOriginal) {
             // IE9 doesn't allow calling apply on console functions directly
             // See: https://stackoverflow.com/questions/5472938/does-ie9-support-console-log-and-is-it-a-real-function#answer-5473193
             Function.prototype.apply.call(
